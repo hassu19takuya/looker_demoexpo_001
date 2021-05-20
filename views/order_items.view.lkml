@@ -2,6 +2,23 @@ view: order_items {
   sql_table_name: "PUBLIC"."ORDER_ITEMS"
     ;;
   drill_fields: [id]
+  # label: "中間製品"
+  # label: "
+  # {% if _explore._name == 'inventory_items' %}
+  #   中間製品
+  # {% elsif _explore._name == 'inherit1' %}
+  #   中間製品
+  # {% else %}
+  #   製品
+  # {% endif %}"
+
+  parameter: start_date {
+    type: date
+  }
+
+  parameter: end_date {
+    type: date_time
+  }
 
   parameter: period_granularity {
     label: "日付粒度の選択"

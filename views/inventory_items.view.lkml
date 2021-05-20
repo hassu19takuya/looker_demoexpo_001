@@ -2,6 +2,16 @@ view: inventory_items {
   sql_table_name: "PUBLIC"."INVENTORY_ITEMS"
     ;;
   drill_fields: [id]
+  # label: "PN"
+  # label: "
+  # {% if _explore._name == 'inventory_items' %}
+  #   PN
+  # {% elsif _explore._name == 'inherit1' %}
+  #   中間製品
+  # {% else %}
+  #   製品
+  # {% endif %}"
+
 
   dimension: id {
     primary_key: yes
