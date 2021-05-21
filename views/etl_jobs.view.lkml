@@ -2,7 +2,7 @@ view: etl_jobs {
   sql_table_name: "PUBLIC"."ETL_JOBS"
     ;;
   drill_fields: [id]
-  label: "テスト"
+  label: "テスト3"
 
   dimension: id {
     primary_key: yes
