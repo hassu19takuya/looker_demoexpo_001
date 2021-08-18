@@ -20,6 +20,8 @@ view: order_items {
     type: date_time
   }
 
+
+
   parameter: period_granularity {
     label: "日付粒度の選択"
     description: "グラフの集計単位の選択が可能にするセレクター"
@@ -99,6 +101,7 @@ view: order_items {
     timeframes: [
       raw,
       time,
+      hour_of_day,
       date,
       week,
       month,
@@ -204,6 +207,38 @@ view: order_items {
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: total_sale_price_yen {
+    type: sum
+    sql: ${sale_price} ;;
+    value_format: "#,##0 \" 円\""
+  }
+
+  parameter: value_format {
+    label: "ドル円表記の選択"
+    description: "表示する金額フォーマットの変更"
+    type: unquoted
+    allowed_value: {
+      label: "円"
+      value: "yen"
+    }
+    allowed_value: {
+      label: "米ドル"
+      value: "usd"
+    }
+  }
+
+  measure: total {
+    label: "合計"
+    sql:
+    {% if value_format._parameter_value == 'yen' %}
+        ${total_sale_price_yen}
+    {% elsif value_format._parameter_value == 'usd' %}
+        ${total_sale_price}
+    {% else %}
+        0
+    {% endif %};;
   }
 
   # ----- Sets of fields for drilling ------

@@ -19,34 +19,34 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 #   }
 # }
 
-explore: inherit1 {
-  view_name: inventory_items
-  # view_label: "中間製品"
+# explore: inherit1 {
+#   view_name: inventory_items
+#   # view_label: "中間製品"
 
-  join: order_items {
-    relationship: one_to_many
-    sql: ${inventory_items.id} = ${order_items.inventory_item_id} ;;
-  }
-}
+#   join: order_items {
+#     relationship: one_to_many
+#     sql: ${inventory_items.id} = ${order_items.inventory_item_id} ;;
+#   }
+# }
 
-explore: inherit2 {
-  label: "継承1"
-  extends: [inherit1]
-  view_label: "製品"
+# explore: inherit2 {
+#   label: "継承1"
+#   extends: [inherit1]
+#   view_label: "製品"
 
-  join: products {
-    view_label: "製品"
-    relationship: one_to_one
-    sql: ${inventory_items.product_id} = ${products.id} ;;
-  }
-}
+#   join: products {
+#     view_label: "製品"
+#     relationship: one_to_one
+#     sql: ${inventory_items.product_id} = ${products.id} ;;
+#   }
+# }
 
-explore: expose {
-  label: "孫継承1"
-  extends: [inherit2]
+# explore: expose {
+#   label: "孫継承1"
+#   extends: [inherit2]
 
-  join: users {
-    relationship: many_to_one
-    sql: ${order_items.user_id} = ${users.id} ;;
-  }
-}
+#   join: users {
+#     relationship: many_to_one
+#     sql: ${order_items.user_id} = ${users.id} ;;
+#   }
+# }
